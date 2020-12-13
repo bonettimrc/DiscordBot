@@ -1,4 +1,8 @@
 require('dotenv').config()
+const rl = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+})
 const fs = require('fs');
 const Discord = require('discord.js');
 const Blasphemator = require('./Blasphemator');
@@ -19,8 +23,37 @@ const otherArgs = {
 }
 
 client.on('ready', () => {
-    console.log('ready and running...');
     Blasphemator.init();
+    console.log('ready and running...');
+    console.log("id | server | text channel")
+    for (const [channelID, channelValue] of client.channels.cache) {
+        if (channelValue.type == "text") {
+            console.log(`${channelID} - ${channelValue.guild.name} - ${channelValue.name}`)
+        }
+    }
+    const askForId = () => {
+        rl.question("id:", (id) => {
+            if (id == "exit")
+                return rl.close();
+            else {
+                askForMsg(id)
+
+            }
+        })
+    }
+    const askForMsg = (id) => {
+        rl.question("message(type exit to return at the id selection):", (msg) => {
+            if (msg == "exit") {
+                askForId()
+                return;
+            }
+            else {
+                client.channels.fetch(id).then(channel => { channel.send(msg) })
+                askForMsg(id)
+            }
+        })
+    }
+    askForId()
 })
 client.on('message', (message) => {
     //doesn't respond to bots
