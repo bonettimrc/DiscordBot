@@ -1,7 +1,7 @@
 const http = require('http')
 module.exports = {
     name: 'laser',
-    description: 'if laser turret is on moves it (takes x and y as args)',
+    description: 'moves laser turret if on. ex: ioana laser <x> <y>',
     execute(message, args) {
         let data = { x: 90, y: 90, led: true }
         if (args[0]) {
