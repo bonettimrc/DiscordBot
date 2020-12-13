@@ -25,16 +25,30 @@ const otherArgs = {
 client.on('ready', () => {
     Blasphemator.init();
     console.log('ready and running...');
-    console.log("id | server | text channel")
+    console.log("----------------------------------------------------------------------------------");
+    console.log("id | server | text channel");
     for (const [channelID, channelValue] of client.channels.cache) {
         if (channelValue.type == "text") {
             console.log(`${channelID} - ${channelValue.guild.name} - ${channelValue.name}`)
         }
     }
+    console.log("----------------------------------------------------------------------------------");
     const askForId = () => {
-        rl.question("id:", (id) => {
-            if (id == "exit")
+        rl.question("id(type exit to stop command, type list to show all available servers):", (id) => {
+            if (id == "exit") {
                 return rl.close();
+            }
+            else if (id == "list"){
+                console.log("----------------------------------------------------------------------------------");
+                console.log("id | server | text channel");
+                for (const [channelID, channelValue] of client.channels.cache) {
+                    if (channelValue.type == "text") {
+                        console.log(`${channelID} - ${channelValue.guild.name} - ${channelValue.name}`)
+                    }
+                }
+                console.log("----------------------------------------------------------------------------------");
+                askForId()
+            }
             else {
                 askForMsg(id)
 
