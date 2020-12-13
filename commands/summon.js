@@ -1,6 +1,6 @@
 module.exports = {
-	name: 'evoca',
-	description: 'Serve per evocare una persona. es: ioana evoca <Nome della persona>',
+	name: 'summon',
+	description: 'calls a person with tts. ex: ioana summon <person\'s name>',
 	execute(message, args) {
 		message.channel.send(args.toString() + " ti evoco", { tts: true })
 	},
