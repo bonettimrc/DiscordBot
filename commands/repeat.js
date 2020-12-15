@@ -4,7 +4,7 @@ module.exports = {
 	execute(message, args) {
 		let string = ""
 		for (arg of args) {
-			string = string.concat(arg)
+			string = string + " " + arg
 		}
 		message.channel.send(string, { tts: true })
 	},
