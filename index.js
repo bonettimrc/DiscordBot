@@ -74,7 +74,7 @@ client.on('message', (message) => {
     if (message.author.bot) return;
     //handle blasphemy
     if (Blasphemator.blasphemyCheck(message.content)) {
-        message.reply('nun se dice!');
+        message.reply('nun se dice!', { tts: true });
         Blasphemator.processBlasphemy(message.guild.id, message.author.id);
     }
     //handle F in chat
