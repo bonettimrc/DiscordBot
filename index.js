@@ -82,7 +82,40 @@ client.on('message', (message) => {
         const attachment = new Discord.MessageAttachment(__dirname + '/img/F.png');
         message.channel.send(attachment);
     }
+    //------------------------------------WORK IN PROGRESS-----------------------------------
+    if (message.content.toLowerCase() === process.env.PREFIX + ' hello') {
+        const { voice } = message.member
+        if (!voice.channelID) {
+            message.reply('Devi essere in un canale vocale per poter usare questo comando!');
+            return
+        }
+        voice.channel.join().then((connection)=>{
+            connection.play("ciao.mp3")
+        })
+    }
 
+    if (message.content.toLowerCase() === process.env.PREFIX + ' dio') {
+        const { voice } = message.member
+        if (!voice.channelID) {
+            message.reply('Devi essere in un canale vocale per poter usare questo comando!');
+            return
+        }
+        voice.channel.join().then((connection)=>{
+            connection.play("diomerda.mp3")
+        })
+    }
+
+    if (message.content.toLowerCase() === process.env.PREFIX + ' vaffanculo') {
+        const { voice } = message.member
+        if (!voice.channelID) {
+            message.reply('Devi essere in un canale vocale per poter usare questo comando!');
+            return
+        }
+        voice.channel.join().then((connection)=>{
+            connection.play("vaffanculo.mp3")
+        })
+    }
+    //---------------------------------------------------------------------------------------
     //if it can't possibly be a command return
     if (!message.content.startsWith(process.env.PREFIX)) return;
     //otherwise handle command
