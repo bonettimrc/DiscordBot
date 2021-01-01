@@ -1,9 +1,14 @@
 module.exports = {
 	name: 'summon',
-	description: 'calls a person with tts. ex: ioana summon <person\'s name>',
+	description: 'ex:ioana summon <@user>, writes to @user that you summoned him',
 	execute(message, args, otherArgs) {
-		const summon = require(otherArgs.dirname + '\\commands\\repeat')
-		args.push(", ti evoco")
-		summon.execute(message, args)
+		if (message.mentions.users.first()) {
+			message.mentions.users.first().send(`${message.author.username} ti ha evocato`)
+		}
+		if (message.mentions.roles.first()) {
+			for (const [memberID, member] of message.mentions.roles.first().members) {
+				member.user.send(`${message.author.username} ti ha evocato`)
+			}
+		}
 	},
 };

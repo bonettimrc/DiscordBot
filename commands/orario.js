@@ -1,9 +1,9 @@
-const Discord = require('discord.js')
+const { MessageAttachment } = require('discord.js')
 module.exports = {
     name: 'orario',
     description: 'send current 4x schedule in chat',
-    execute(message) {
-        const attachment = new Discord.MessageAttachment('./img/orario.png');
+    execute(message, args, otherArgs) {
+        const attachment = new MessageAttachment(otherArgs.dirname + '\\media\\img\\');
         message.channel.send(attachment);
     }
 }

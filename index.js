@@ -38,7 +38,7 @@ client.on('ready', () => {
             if (id == "exit") {
                 return rl.close();
             }
-            else if (id == "list"){
+            else if (id == "list") {
                 console.log("----------------------------------------------------------------------------------");
                 console.log("id | server | text channel");
                 for (const [channelID, channelValue] of client.channels.cache) {
@@ -74,48 +74,14 @@ client.on('message', (message) => {
     if (message.author.bot) return;
     //handle blasphemy
     if (Blasphemator.blasphemyCheck(message.content)) {
-        message.reply('nun se dice!', { tts: true });
+        message.reply('nun se dice!');
         Blasphemator.processBlasphemy(message.guild.id, message.author.id);
     }
     //handle F in chat
     if (message.content.toLowerCase() === 'f') {
-        const attachment = new Discord.MessageAttachment(__dirname + '/img/F.png');
+        const attachment = new Discord.MessageAttachment(__dirname + '/media/img/F.png');
         message.channel.send(attachment);
     }
-    //------------------------------------WORK IN PROGRESS-----------------------------------
-    if (message.content.toLowerCase() === process.env.PREFIX + ' hello') {
-        const { voice } = message.member
-        if (!voice.channelID) {
-            message.reply('Devi essere in un canale vocale per poter usare questo comando!');
-            return
-        }
-        voice.channel.join().then((connection)=>{
-            connection.play("ciao.mp3")
-        })
-    }
-
-    if (message.content.toLowerCase() === process.env.PREFIX + ' dio') {
-        const { voice } = message.member
-        if (!voice.channelID) {
-            message.reply('Devi essere in un canale vocale per poter usare questo comando!');
-            return
-        }
-        voice.channel.join().then((connection)=>{
-            connection.play("diomerda.mp3")
-        })
-    }
-
-    if (message.content.toLowerCase() === process.env.PREFIX + ' vaffanculo') {
-        const { voice } = message.member
-        if (!voice.channelID) {
-            message.reply('Devi essere in un canale vocale per poter usare questo comando!');
-            return
-        }
-        voice.channel.join().then((connection)=>{
-            connection.play("vaffanculo.mp3")
-        })
-    }
-    //---------------------------------------------------------------------------------------
     //if it can't possibly be a command return
     if (!message.content.startsWith(process.env.PREFIX)) return;
     //otherwise handle command
