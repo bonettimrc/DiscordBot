@@ -1,5 +1,7 @@
 module.exports = {
 	name: 'summon',
+	group: 'utilities',
+	active: true,
 	description: 'ex:ioana summon <@user>, writes to @user that you summoned him',
 	execute(message, args, otherArgs) {
 		if (message.mentions.users.first()) {

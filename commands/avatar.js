@@ -1,6 +1,8 @@
 const Discord = require('discord.js')
 module.exports = {
     name: 'avatar',
+    group: 'utilities',
+    active: true,
     description: 'sends the profile picture of the user that used the command',
     execute(message) {
         const embed = new Discord.MessageEmbed()

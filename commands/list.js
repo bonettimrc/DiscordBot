@@ -2,6 +2,8 @@ const { MessageEmbed } = require('discord.js')
 const Blasphemator = require('../Blasphemator')
 module.exports = {
     name: 'list',
+    group: 'bestemmie',
+    active: true,
     description: 'list all blasphemies in database',
     execute(message, args, otherArgs) {
         Blasphemator.init(otherArgs.configPath)

@@ -1,5 +1,7 @@
 module.exports = {
 	name: 'countdown',
+	group: 'utilities',
+	active: true,
 	description: 'makes a countdown with tts. ex: ioana countdown <n>',
 	execute(message, args) {
 		let seconds = 3

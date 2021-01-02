@@ -2,6 +2,8 @@ const { MessageEmbed } = require('discord.js')
 const Blasphemator = require('../Blasphemator')
 module.exports = {
 	name: 'leaderboard',
+	group: 'bestemmie',
+	active: true,
 	description: 'display blasphemies by user',
 	async execute(message) {
 		const guild = message.guild

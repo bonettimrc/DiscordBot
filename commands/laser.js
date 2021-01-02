@@ -1,6 +1,8 @@
 const http = require('http')
 module.exports = {
     name: 'laser',
+    group: 'utilities',
+    active: false,
     description: 'moves laser turret if on. ex: ioana laser <x> <y>',
     execute(message, args) {
         let data = { x: 90, y: 90, led: true }

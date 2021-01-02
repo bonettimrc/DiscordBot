@@ -1,6 +1,8 @@
 const say = require('say')
 module.exports = {
     name: 'say',
+    group: 'audio',
+    active: true,
     description: 'enters voice channel and tts\'s text',
     execute(message, args, otherArgs) {
         const voice = message.member.voice

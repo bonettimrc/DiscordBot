@@ -1,6 +1,7 @@
 module.exports = {
     name: 'leave',
-    group: 'music',
+    group: 'audio',
+    active: true,
     description: 'Makes the bot leave the voice channel',
     execute(message, args, otherArgs) {
         //WIP start
