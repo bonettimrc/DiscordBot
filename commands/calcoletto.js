@@ -6,7 +6,7 @@ const { MessageAttachment } = require("discord.js")
 module.exports = {
     name: 'calcoletto',
     group: 'utilities',
-    active: false,
+    active: true,
     description: 'ex: ioana calcoletto <voltage> <voltageOffset> <frequency> <capacity> <resistence> <precision>',
     async execute(message, args, otherArgs) {
         args = args.map(arg => { return parseFloat(arg) })
