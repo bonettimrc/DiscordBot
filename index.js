@@ -5,25 +5,30 @@ const rl = require('readline').createInterface({
 })
 const fs = require('fs');
 const Discord = require('discord.js');
-const Blasphemator = require('./Blasphemator');
 
 const client = new Discord.Client();
 client.login(process.env.TOKEN);
 //retrieve commands from commands dir
 const commands = []
-const commandFiles = fs.readdirSync('./commands');
+const commandFiles = fs.readdirSync(`${__dirname}\\commands`);
 for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
+    const command = require(`${__dirname}\\commands\\${file}`);
     commands[command.name] = command;
+}
+const passiveCommands = []
+//retrieve passiveCommands from passiveCommands dir
+const passiveCommandFiles = fs.readdirSync(`${__dirname}\\passiveCommands`);
+for (const file of passiveCommandFiles) {
+    passiveCommands.push(require(`${__dirname}\\passiveCommands\\${file}`))
 }
 //setup of in-process args that the commands could need
 const otherArgs = {
     "dirname": __dirname,
     "client": client
 }
-
 client.on('ready', () => {
-    Blasphemator.init();
+
+
     console.log('ready and running...');
     console.log("----------------------------------------------------------------------------------");
     console.log("id | server | text channel");
@@ -70,18 +75,9 @@ client.on('ready', () => {
     askForId()
 })
 client.on('message', (message) => {
-    //doesn't respond to bots
-    if (message.author.bot) return;
-    //handle blasphemy
-    if (Blasphemator.blasphemyCheck(message.content)) {
-        message.reply('nun se dice!');
-        Blasphemator.processBlasphemy(message.guild.id, message.author.id);
-    }
-    //handle F in chat
-    if (message.content.toLowerCase() === 'f') {
-        const attachment = new Discord.MessageAttachment(__dirname + '/media/img/F.png');
-        message.channel.send(attachment);
-    }
+    passiveCommands.forEach(passiveCommand => {
+        passiveCommand.execute(message, otherArgs)
+    });
     //if it can't possibly be a command return
     if (!message.content.startsWith(process.env.PREFIX)) return;
     //otherwise handle command
