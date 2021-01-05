@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'ping',
-	group: 'utilities',
+	group: 'inutilities',
 	active: true,
 	description: 'pong!',
 	execute(message) {
