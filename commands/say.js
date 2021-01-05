@@ -1,12 +1,11 @@
-const say = require('say')
+const discordTTS = require('discord-tts')
 module.exports = {
     name: 'say',
     group: 'audio',
     active: true,
     description: 'enters voice channel and tts\'s text',
-    execute(message, args, otherArgs) {
+    async execute(message, args, otherArgs) {
         const voice = message.member.voice
-        const audioPath = otherArgs.dirname + '\\media\\audio\\temp.mp3'
         if (!voice.channelID) {
             message.reply('Devi essere in un canale vocale per poter usare questo comando!');
             return
@@ -16,13 +15,14 @@ module.exports = {
         for (arg of args) {
             string = string + " " + arg
         }
-
-        say.export(string, "Microsoft Elsa Desktop", null, audioPath, (err) => {
-            if (err) throw err
+        if (string.length > 200) {
+            message.reply("limite massimo:200 caratteri")
+        } else if (string.length !== 0) {
+            const broadcast = otherArgs.client.voice.createBroadcast()
             voice.channel.join().then((connection) => {
-                connection.play(audioPath)
+                broadcast.play(discordTTS.getVoiceStream(string, process.env.LANGUAGE));
+                connection.play(broadcast);
             })
-        })
-
+        }
     },
 };
