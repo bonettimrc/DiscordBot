@@ -1,4 +1,3 @@
-const discordTTS = require('discord-tts')
 const { MessageEmbed } = require('discord.js')
 const languages = ["af-ZA", "am-ET", "hy-AM", "az-AZ", "id-ID", "ms-MY", "bn-BD", "bn-IN", "ca-ES", "cs-CZ", "da-DK", "de-DE",
     "en-AU", "en-CA", "en-GH", "en-GB", "en-IN", "en-IE", "en-KE", "en-NZ", "en-NG", "en-PH", "en-SG", "en-ZA",
