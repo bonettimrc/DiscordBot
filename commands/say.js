@@ -18,10 +18,8 @@ module.exports = {
         if (string.length > 200) {
             message.reply("limite massimo:200 caratteri")
         } else if (string.length !== 0) {
-            const broadcast = otherArgs.client.voice.createBroadcast()
             voice.channel.join().then((connection) => {
-                broadcast.play(discordTTS.getVoiceStream(string, process.env.LANGUAGE));
-                connection.play(broadcast);
+                connection.play(discordTTS.getVoiceStream(string, process.env.LANGUAGE));
             })
         }
     },
