@@ -27,7 +27,7 @@ const otherArgs = {
     "client": client
 }
 client.on('ready', () => {
-
+    client.user.setActivity('calcoletto', { type: 'PLAYING' });
 
     console.log('ready and running...');
     console.log("----------------------------------------------------------------------------------");
@@ -79,7 +79,7 @@ client.on('message', (message) => {
         passiveCommand.execute(message, otherArgs)
     });
     //if it can't possibly be a command return
-    if (!message.content.startsWith(process.env.PREFIX)) return;
+    if (!message.content.toLowerCase().startsWith(process.env.PREFIX)) return;
     //otherwise handle command
     let args = message.content.split(" ")
     const invokedCommandName = args[1].toLowerCase()
