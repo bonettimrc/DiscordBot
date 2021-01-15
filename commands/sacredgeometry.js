@@ -1,6 +1,6 @@
 module.exports = {
     name: 'sacredgeometry',
-    group: 'gdr',
+    group: 'utilities',
     active: true,
     description: 'calculate the calculus needed to success a sacred geometry use. \nex: ioana sacredgeometry <lvl> <rolls>.\n the rolls are without spaces',
     execute(message, args, otherArgs) {
